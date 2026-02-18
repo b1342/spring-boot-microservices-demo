@@ -1,0 +1,24 @@
+package com.example.userservice.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    private static final Map<Integer, String> USERS = Map.of(
+        1, "Dana",
+        2, "David",
+        3, "Yaeli"
+    );
+
+    @GetMapping("/{id}")
+    public Map<String, Object> getUser(@PathVariable int id) {
+        return Map.of(
+            "id", id,
+            "name", USERS.getOrDefault(id, "Unknown")
+        );
+    }
+}
